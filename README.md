@@ -49,7 +49,9 @@ jobs:
           python-version: 3.7
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.2.0
+        uses: TRANZACT/chart-testing@v1.0.0
+        with:
+          version: v3.3.0
 
       - name: Run chart-testing (list-changed)
         id: list-changed
@@ -60,14 +62,8 @@ jobs:
           fi
 
       - name: Run chart-testing (lint)
-        run: ct lint
+        run: ct lint --config ct.yaml
 
-      - name: Create kind cluster
-        uses: helm/kind-action@v1.2.0
-        if: steps.list-changed.outputs.changed == 'true'
-
-      - name: Run chart-testing (install)
-        run: ct install
 ```
 
 This uses [`helm/kind-action`](https://www.github.com/helm/kind-action) GitHub Action to spin up a [kind](https://kind.sigs.k8s.io/) Kubernetes cluster, 
