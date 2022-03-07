@@ -49,7 +49,7 @@ jobs:
           python-version: 3.7
 
       - name: Set up chart-testing
-        uses: TRANZACT/chart-testing@v1.0.0
+        uses: TRANZACT/chart-testing@v1.0.1
         with:
           version: v3.3.0
 
